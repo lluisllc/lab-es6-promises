@@ -112,7 +112,31 @@ async function makeBroccoli() {
     console.log(error)
   }
 }
-makeBroccoli();
 
 // Bonus 2 - Promise all
 // ...
+makeBroccoli();
+
+const promise0 = obtainInstruction('brusselsSprouts', 0)
+const promise1 = obtainInstruction('brusselsSprouts', 1)
+const promise2 = obtainInstruction('brusselsSprouts', 2)
+const promise3 = obtainInstruction('brusselsSprouts', 3)
+const promise4 = obtainInstruction('brusselsSprouts', 4)
+const promise5 = obtainInstruction('brusselsSprouts', 5)
+const promise6 = obtainInstruction('brusselsSprouts', 6)
+const promise7 = obtainInstruction('brusselsSprouts', 7)
+
+Promise.all([promise0, promise1, promise2, promise3, promise4, promise5, promise6, promise7])
+
+  .then((step) => {
+    step.forEach((step) => {
+      document.querySelector("#brusselsSprouts").innerHTML += `<li>${step}</li>`
+    })
+
+    document.querySelector("#brusselsSprouts").innerHTML += `<li>Brussels sprouts are ready!</li>`
+    document.querySelector("#brusselsSproutsImg").removeAttribute("hidden")
+  })
+
+  .catch((error) => {
+    console.log(error)
+  })
